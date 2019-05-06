@@ -13,42 +13,59 @@ public class CreateAccountRequest {
 	private String initialCredit;
 	
 	
-	/**
-	 * 
-	 */
-	protected CreateAccountRequest() {
-		super();
-	}
-
+	
 	/**
 	 * @param customerID
 	 * @param initialCredit
 	 */
-	protected CreateAccountRequest(String customerID, String initialCredit) {
+	public CreateAccountRequest(String customerID, String initialCredit) {
 		super();
 		this.customerID = customerID;
 		this.initialCredit = initialCredit;
 	}
-	
-	protected String getCustomerID() {
+
+
+
+	/**
+	 * @return the customerID
+	 */
+	public String getCustomerID() {
 		return customerID;
 	}
-	protected void setCustomerID(String customerID) {
+
+
+
+	/**
+	 * @param customerID the customerID to set
+	 */
+	public void setCustomerID(String customerID) {
 		this.customerID = customerID;
 	}
-	protected String getInitialCredit() {
+
+
+
+	/**
+	 * @return the initialCredit
+	 */
+	public String getInitialCredit() {
 		return initialCredit;
 	}
-	protected void setInitialCredit(String initialCredit) {
+
+
+
+	/**
+	 * @param initialCredit the initialCredit to set
+	 */
+	public void setInitialCredit(String initialCredit) {
 		this.initialCredit = initialCredit;
 	}
 
+
+
 	@Override
 	public String toString() {
-		return "\"CreateAccountRequest\" :{\"customerID\":\"" + customerID + "\"; \"initialCredit\":\"" + initialCredit
-				+ "\"}";
+		return "CreateAccountRequest [customerID=" + customerID + ", initialCredit=" + initialCredit + "]";
 	}
-	
-	
 
+	
 }
