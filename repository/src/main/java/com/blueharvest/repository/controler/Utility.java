@@ -16,7 +16,7 @@ public class Utility {
 	
 	public int getAccountNumLength() {
 		if(accountNumLength==0){
-			accountNumLength=10;
+			accountNumLength=20;
 		}
 		return accountNumLength;
 	}
