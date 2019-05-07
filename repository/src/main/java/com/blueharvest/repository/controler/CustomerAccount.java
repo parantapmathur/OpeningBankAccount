@@ -3,6 +3,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+
+/**
+ * @author Parantap Mathur
+ *
+ */
+
 @Entity
 public class CustomerAccount {
    @Id
@@ -15,6 +22,9 @@ public class CustomerAccount {
    private String primaryAccountNumber;
    
    
+   public CustomerAccount(){
+	   
+   }
    
 /**
  * @param cutomerID
@@ -34,6 +44,54 @@ public CustomerAccount(String cutomerID, String name, int age, String secondaryA
 }
 
 
+
+public long getId() {
+	return id;
+}
+
+public void setId(long id) {
+	this.id = id;
+}
+
+public String getCutomerID() {
+	return CutomerID;
+}
+
+public void setCutomerID(String cutomerID) {
+	CutomerID = cutomerID;
+}
+
+public String getName() {
+	return name;
+}
+
+public void setName(String name) {
+	this.name = name;
+}
+
+public int getAge() {
+	return age;
+}
+
+public void setAge(int age) {
+	this.age = age;
+}
+
+public String getSecondaryAccountNumber() {
+	return secondaryAccountNumber;
+}
+
+public void setSecondaryAccountNumber(String secondaryAccountNumber) {
+	this.secondaryAccountNumber = secondaryAccountNumber;
+}
+
+public String getPrimaryAccountNumber() {
+	return primaryAccountNumber;
+}
+
+public void setPrimaryAccountNumber(String primaryAccountNumber) {
+	this.primaryAccountNumber = primaryAccountNumber;
+}
 
 @Override
 public String toString() {
