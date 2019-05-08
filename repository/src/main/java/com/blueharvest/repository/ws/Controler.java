@@ -13,9 +13,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.blueharvest.repository.db.Repository.UserAccountRepository;
+import com.blueharvest.repository.db.dao.UserAccountRepository;
 import com.blueharvest.repository.db.entity.Account;
 import com.blueharvest.repository.db.facade.DBManager;
+import com.blueharvest.repository.utility.ConfigParams;
 
 /**
  * @author Parantap Mathur
@@ -24,27 +25,23 @@ import com.blueharvest.repository.db.facade.DBManager;
 @RestController
 public class Controler {
 
-	@Autowired UserAccountRepository accountRepository;
-
+	@Autowired ConfigParams configParam;
      //return 201 instead of 200
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/openSecondaryAccount")
-    public CustomerAccount openSecondaryAccount(@RequestBody CustomerAccount accountDetails) {
+    public CustomerAccountRequest openSecondaryAccount(@RequestBody CustomerAccountRequest accountDetails) {
     	
     	//return ServiceHelper.initilize().createSecondaryAcc(accountDetails);
 		
-    	new DBManager();
+    	System.out.println("@@@@@@@@@@@@--------"+configParam.getLength());
 		Account account = DBManager.initilize().createSecondaryAcc(accountDetails);
 		//accountRepository.save(account);
-    	CustomerAccount response = new CustomerAccount(account.getCutomerID(), account.getCustomerName(),
+    	CustomerAccountRequest response = new CustomerAccountRequest(account.getCutomerID(), account.getCustomerName(),
 				account.getCustomerAge(), account.getSecondaryAccountNumber(), account.getPrimaryAccountNumber());
        return response;
     }
     
-    @GetMapping("/getall")
-    public Collection<Account> getAllEntries() {
-    	return accountRepository.findAll();
-    }
+   
     
     
     /*List<CustomerAccount> findAll(String primaryAccountNumber) {

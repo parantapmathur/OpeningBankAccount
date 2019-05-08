@@ -4,20 +4,40 @@
 package com.blueharvest.repository.utility;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 /**
  * @author Parantap Mathur
  *
  */
+//@Component
+//@Service
 @Component
 public class ConfigParams {
-	@Value("${app.account.num.length}")
+	
+	@Value("${app.account.num.length}") 
 	private String length;
+	
 	@Value("${app.account.withAlpha}")
 	private boolean allowAlpha;
+	
 	@Value("${app.account.withNums}")
 	private boolean allowNums;
+
+	public ConfigParams(@Value("${app.account.num.length}") String length,
+			@Value("${app.account.withAlpha}") boolean allowAlpha,
+			@Value("${app.account.withNums}")boolean allowNums){
+		this.length = length;
+		this.allowAlpha = allowAlpha;
+		this.allowNums = allowNums;		
+	}
+	
+	public ConfigParams() {
+		// TODO Auto-generated constructor stub
+	}
+
 	/**
 	 * @return the length
 	 */

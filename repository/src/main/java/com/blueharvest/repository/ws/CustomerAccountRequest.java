@@ -4,14 +4,14 @@ package com.blueharvest.repository.ws;
  * @author Parantap Mathur
  *
  */
-public class CustomerAccount {
+public class CustomerAccountRequest {
    private String cutomerID;
    private String customerName;
    private int customerAge;
    private String secondaryAccountNumber;
    private String primaryAccountNumber;
    
-   public CustomerAccount(){
+   public CustomerAccountRequest(){
 	   
    }
 
@@ -22,7 +22,7 @@ public class CustomerAccount {
  * @param secondaryAccountNumber
  * @param primaryAccountNumber
  */
-public CustomerAccount(String cutomerID, String customerName, int customerAge, String secondaryAccountNumber,
+public CustomerAccountRequest(String cutomerID, String customerName, int customerAge, String secondaryAccountNumber,
 		String primaryAccountNumber) {
 	this.cutomerID = cutomerID;
 	this.customerName = customerName;
