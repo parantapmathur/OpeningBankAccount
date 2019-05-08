@@ -1,4 +1,4 @@
-package com.blueharvest.repository.controler;
+package com.blueharvest.repository.ws;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
