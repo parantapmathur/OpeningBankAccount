@@ -14,33 +14,37 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.blueharvest.repository.db.facade.DBManager;
-import com.blueharvest.repository.utility.ConfigParams;
+import com.blueharvest.repository.exception.AccountEligibiltyException;
 
 /**
  * @author Parantap Mathur
  *
  */
 @RestController
-public class AccountControler {
+public class RepositoryControler {
 	Logger logger = LoggerFactory.getLogger(this.getClass());
 	
-	@Autowired
-	ConfigParams configParam;
-	@Autowired
-	DBManager dbManager;
 	@Autowired
 	ServiceHelper helper;
 
 	@PostMapping("/openSecondaryAccount")
-	public Response openSecondaryAccount(@RequestBody @Valid CustomerAccountRequest accountDetails) {
+	public Response openSecondaryAccount(@RequestBody @Valid CustomerAccountRequest accountDetails) throws AccountEligibiltyException {
 		try {
 			logger.info("#########Request Recived for opening Secondary Account#######");
-			dbManager.createSecondaryAccnt(accountDetails);
+			boolean isEligible = helper.findEligibiltyForAccnt(accountDetails);
+			if(isEligible) {
+				helper.updateAccountDetails(accountDetails);
+			}else {
+				throw new AccountEligibiltyException("Account not Eligible to open ");
+			}
 			CustomerAccountRequest response = null;
-		} catch (Exception ex) {
-			// error response
-		} finally {
+			
+		} /*
+			 * catch (ReposityServiceException ex) { // error response }
+			 *//*
+				 * catch (AccountEligibiltyException e) { // TODO Auto-generated catch block
+				 * e.printStackTrace(); }
+				 */ finally {
 			// any performance logging to done
 		}
 		return null;

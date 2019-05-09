@@ -11,21 +11,23 @@ import javax.validation.constraints.Size;
  */
 public class CustomerAccountRequest {
 	@NotNull
-	@Size(min = 15, max = 15, message = "Please valid CustomerID a name")
+	@Size(min = 10, max = 10, message = "Please valid CustomerID a name")
 	private String customerID;
 
 	@NotNull
 	private String customerName;
 	
-	@NotNull
-	private int customerAge;
-	private String secondaryAccountNumber;
-	@NotNull
-	@Size(min = 15, max = 15, message = "Please valid CustomerID a name")
-	private String primaryAccountNumber;
-	
+//	@NotNull
+//	private int customerAge;
+//	private String secondaryAccountNumber;
+//	@NotNull
+//	@Size(min = 15, max = 15, message = "Please valid CustomerID a name")
+//	private String primaryAccountNumber;
+//	
 	@NotNull
 	private BigDecimal initialCredit=BigDecimal.ZERO;
+	
+	@NotNull
 	private String currency;
 
 	public CustomerAccountRequest() {
@@ -62,50 +64,50 @@ public class CustomerAccountRequest {
 		this.customerName = customerName;
 	}
 
-	/**
-	 * @return the customerAge
-	 */
-	public int getCustomerAge() {
-		return customerAge;
-	}
+//	/**
+//	 * @return the customerAge
+//	 */
+//	public int getCustomerAge() {
+//		return customerAge;
+//	}
+//
+//	/**
+//	 * @param customerAge
+//	 *            the customerAge to set
+//	 */
+//	public void setCustomerAge(int customerAge) {
+//		this.customerAge = customerAge;
+//	}
+//
+//	/**
+//	 * @return the secondaryAccountNumber
+//	 */
+//	public String getSecondaryAccountNumber() {
+//		return secondaryAccountNumber;
+//	}
+//
+//	/**
+//	 * @param secondaryAccountNumber
+//	 *            the secondaryAccountNumber to set
+//	 */
+//	public void setSecondaryAccountNumber(String secondaryAccountNumber) {
+//		this.secondaryAccountNumber = secondaryAccountNumber;
+//	}
 
-	/**
-	 * @param customerAge
-	 *            the customerAge to set
-	 */
-	public void setCustomerAge(int customerAge) {
-		this.customerAge = customerAge;
-	}
-
-	/**
-	 * @return the secondaryAccountNumber
-	 */
-	public String getSecondaryAccountNumber() {
-		return secondaryAccountNumber;
-	}
-
-	/**
-	 * @param secondaryAccountNumber
-	 *            the secondaryAccountNumber to set
-	 */
-	public void setSecondaryAccountNumber(String secondaryAccountNumber) {
-		this.secondaryAccountNumber = secondaryAccountNumber;
-	}
-
-	/**
-	 * @return the primaryAccountNumber
-	 */
-	public String getPrimaryAccountNumber() {
-		return primaryAccountNumber;
-	}
-
-	/**
-	 * @param primaryAccountNumber
-	 *            the primaryAccountNumber to set
-	 */
-	public void setPrimaryAccountNumber(String primaryAccountNumber) {
-		this.primaryAccountNumber = primaryAccountNumber;
-	}
+//	/**
+//	 * @return the primaryAccountNumber
+//	 */
+//	public String getPrimaryAccountNumber() {
+//		return primaryAccountNumber;
+//	}
+//
+//	/**
+//	 * @param primaryAccountNumber
+//	 *            the primaryAccountNumber to set
+//	 */
+//	public void setPrimaryAccountNumber(String primaryAccountNumber) {
+//		this.primaryAccountNumber = primaryAccountNumber;
+//	}
 
 	public BigDecimal getInitialCredit() {
 		return initialCredit;
