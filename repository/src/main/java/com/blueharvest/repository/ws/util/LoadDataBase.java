@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import com.blueharvest.repository.db.dao.UserAccountRepository;
-import com.blueharvest.repository.db.entity.Account;
+import com.blueharvest.repository.db.entity.Customer_Account;
 
 @Configuration
 @Slf4j

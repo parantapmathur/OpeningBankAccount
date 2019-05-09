@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.blueharvest.repository.db.dao.UserAccountRepository;
-import com.blueharvest.repository.db.entity.Account;
+import com.blueharvest.repository.db.entity.Customer_Account;
 
 @Component
 public class AccountDBOperation {
@@ -21,12 +21,12 @@ public class AccountDBOperation {
 	 * @param account
 	 * 
 	 */
-	public String updateSecAccnt(Account account) {
+	public String updateSecAccnt(Customer_Account account) {
 		
-		List<Account> list = accountRepository.findbyCustomerIDAndCustomerName(account.getCustomerID(), account.getCustomerName());
+		List<Customer_Account> list = accountRepository.findbyCustomerIDAndCustomerName(account.getCustomerID(), account.getCustomerName());
 		//List<Account> list = accountRepository.findByCutomerID(account.getCutomerID());
 		if(list!=null && list.size()>0 && list.size()==1){
-			Account savedAccount = list.get(0);
+			Customer_Account savedAccount = list.get(0);
 			savedAccount.setSecondaryAccountNumber(account.getSecondaryAccountNumber());
 			this.accountRepository.save(savedAccount);
 			return "Account Created";

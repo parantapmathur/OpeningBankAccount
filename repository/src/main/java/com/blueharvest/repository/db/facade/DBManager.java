@@ -15,7 +15,7 @@ import org.springframework.util.CollectionUtils;
 import com.blueharvest.repository.db.dao.UserAccountRepository;
 import com.blueharvest.repository.db.dao.UserTransationRepository;
 import com.blueharvest.repository.db.dto.AccountDTO;
-import com.blueharvest.repository.db.entity.Account;
+import com.blueharvest.repository.db.entity.Customer_Account;
 import com.blueharvest.repository.db.entity.Transation;
 import com.blueharvest.repository.utility.ConfigParams;
 import com.blueharvest.repository.ws.CustomerAccountRequest;
@@ -38,7 +38,7 @@ public class DBManager {
 
 	}
 
-	public Account createSecondaryAccnt(CustomerAccountRequest accountDetails) {
+	public Customer_Account createSecondaryAccnt(CustomerAccountRequest accountDetails) {
 		/*
 		 * Random random = new SecureRandom();
 		 * accountDetails.setSecondaryAccountNumber(random.toString());
@@ -72,10 +72,10 @@ public class DBManager {
 
 	public ArrayList<AccountDTO> getAccountDetails(String customerID, String customerName) {
 		ArrayList<AccountDTO> accountDtoList = null;
-		ArrayList<Account> accountList = accountRepo.findbyCustomerIDAndCustomerName(customerID, customerName);
+		ArrayList<Customer_Account> accountList = accountRepo.findbyCustomerIDAndCustomerName(customerID, customerName);
 		if(!CollectionUtils.isEmpty(accountList)) {
 			accountDtoList = new ArrayList<AccountDTO>(accountList.size());
-			for (Account account : accountList) {
+			for (Customer_Account account : accountList) {
 				AccountDTO accountDto = new AccountDTO();
 				BeanUtils.copyProperties(account, accountDto);
 				accountDtoList.add(accountDto);

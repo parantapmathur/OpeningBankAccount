@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 import com.blueharvest.repository.db.dao.UserAccountRepository;
 import com.blueharvest.repository.db.dao.UserTransationRepository;
-import com.blueharvest.repository.db.entity.Account;
+import com.blueharvest.repository.db.entity.Customer_Account;
 import com.blueharvest.repository.db.entity.Transation;
 
 @Component
@@ -15,7 +15,7 @@ public class UserCommandLineRunner implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		
-		  for(Account ca:this.accountRepository.findAll()) {
+		  for(Customer_Account ca:this.accountRepository.findAll()) {
 			 System.out.println("UserCommandLineRunner run() UserAccountRepository:::" + ca.toString());
 		  }
 		  

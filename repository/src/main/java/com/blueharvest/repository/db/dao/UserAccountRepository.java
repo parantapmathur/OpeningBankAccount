@@ -6,21 +6,18 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.blueharvest.repository.db.entity.Account;
+import com.blueharvest.repository.db.entity.Customer_Account;
 
 /**
  * @author Parantap Mathur
  *
  */
 @Repository
-public interface UserAccountRepository extends JpaRepository<Account, Long> {
-	public ArrayList<Account> findByCustomerID(String customerID);
+public interface UserAccountRepository extends JpaRepository<Customer_Account, Long> {
 
-	public ArrayList<Account> findByCustomerName(String customerName);
-
-	public ArrayList<Account> findByPrimaryAccountNumber(String primaryAccountNumber);
+	public ArrayList<Customer_Account> findByAccountNumber(String accountNumber);
 
 	@Query("select u from Account u where u.customerID = :customerID and u.customerName = :customerName")
-	public ArrayList<Account> findbyCustomerIDAndCustomerName(@Param("customerID") String customerID,
-			@Param("customerName") String customerName);
+	//public ArrayList<Customer_Account> findbyCustomerIDAndCustomerName(@Param("customerID") String customerID,
+	//		@Param("customerName") String customerName);
 }
