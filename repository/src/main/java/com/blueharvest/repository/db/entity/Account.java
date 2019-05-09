@@ -1,5 +1,7 @@
 package com.blueharvest.repository.db.entity;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,6 +31,12 @@ public class Account {
 	@Column(name = "PRIMARYACCOUNTNUMBER", nullable = false)
 	private String primaryAccountNumber;
 
+	@Column(name = "AMOUNT", nullable = false)
+	private BigDecimal amount = BigDecimal.ZERO;
+	
+	@Column(name = "CURRENCY", nullable = false)
+	private BigDecimal currency;
+	
 	public Account() {
 
 	}

@@ -35,6 +35,7 @@ public class DBOperation {
 		this.accountRepository.findAll().forEach(e -> list.add(e));
 		return list;
 	}
+	
 	public String updateSecAccnt(Account account) {
 		List<Account> list = findAccountByCustomerId(account.getCutomerID());
 		if(list!=null && list.size()>0 && list.size()==1){
