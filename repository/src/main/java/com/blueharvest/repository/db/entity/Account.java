@@ -41,21 +41,30 @@ public class Account {
 
 	}
 
+	
 	/**
+	 * @param id
 	 * @param cutomerID
-	 * @param name
-	 * @param age
+	 * @param customerName
+	 * @param customerAge
 	 * @param secondaryAccountNumber
 	 * @param primaryAccountNumber
+	 * @param amount
+	 * @param currency
 	 */
-	public Account(String cutomerID, String customerName, int customerAge, String secondaryAccountNumber,
-			String primaryAccountNumber) {
+	public Account(long id, String cutomerID, String customerName, int customerAge, String secondaryAccountNumber,
+			String primaryAccountNumber, BigDecimal amount, BigDecimal currency) {
+		super();
+		this.id = id;
 		this.cutomerID = cutomerID;
 		this.customerName = customerName;
 		this.customerAge = customerAge;
 		this.secondaryAccountNumber = secondaryAccountNumber;
 		this.primaryAccountNumber = primaryAccountNumber;
+		this.amount = amount;
+		this.currency = currency;
 	}
+
 
 	/**
 	 * @return the cutomerID
@@ -132,17 +141,33 @@ public class Account {
 		this.primaryAccountNumber = primaryAccountNumber;
 	}
 
-	@Override
-	public String toString() {
-		return "CustomerAccount [id=" + id + ", cutomerID=" + cutomerID + ", customerName=" + customerName
-				+ ", customerAge=" + customerAge + ", secondaryAccountNumber=" + secondaryAccountNumber
-				+ ", primaryAccountNumber=" + primaryAccountNumber + "]";
+
+	public BigDecimal getAmount() {
+		return amount;
 	}
+
+
+	public void setAmount(BigDecimal amount) {
+		this.amount = amount;
+	}
+
+
+	public BigDecimal getCurrency() {
+		return currency;
+	}
+
+
+	public void setCurrency(BigDecimal currency) {
+		this.currency = currency;
+	}
+
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((amount == null) ? 0 : amount.hashCode());
+		result = prime * result + ((currency == null) ? 0 : currency.hashCode());
 		result = prime * result + customerAge;
 		result = prime * result + ((customerName == null) ? 0 : customerName.hashCode());
 		result = prime * result + ((cutomerID == null) ? 0 : cutomerID.hashCode());
@@ -151,6 +176,7 @@ public class Account {
 		result = prime * result + ((secondaryAccountNumber == null) ? 0 : secondaryAccountNumber.hashCode());
 		return result;
 	}
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -161,6 +187,16 @@ public class Account {
 		if (getClass() != obj.getClass())
 			return false;
 		Account other = (Account) obj;
+		if (amount == null) {
+			if (other.amount != null)
+				return false;
+		} else if (!amount.equals(other.amount))
+			return false;
+		if (currency == null) {
+			if (other.currency != null)
+				return false;
+		} else if (!currency.equals(other.currency))
+			return false;
 		if (customerAge != other.customerAge)
 			return false;
 		if (customerName == null) {
@@ -188,4 +224,13 @@ public class Account {
 		return true;
 	}
 
+
+	@Override
+	public String toString() {
+		return "Account [id=" + id + ", cutomerID=" + cutomerID + ", customerName=" + customerName + ", customerAge="
+				+ customerAge + ", secondaryAccountNumber=" + secondaryAccountNumber + ", primaryAccountNumber="
+				+ primaryAccountNumber + ", amount=" + amount + ", currency=" + currency + "]";
+	}
+
+	
 }

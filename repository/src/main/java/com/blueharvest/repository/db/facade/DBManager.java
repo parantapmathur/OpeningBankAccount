@@ -37,15 +37,14 @@ public class DBManager {
 		System.out.println("useNumbers::"+useNumbers);
 		
 		accountDetails.setSecondaryAccountNumber(generatedString);
-		Account account = new Account(accountDetails.getCutomerID(), accountDetails.getCustomerName(),
-				accountDetails.getCustomerAge(), accountDetails.getSecondaryAccountNumber(),
-				accountDetails.getPrimaryAccountNumber());
+		Account account = new Account();
+		account.setCutomerID(accountDetails.getCutomerID());
 		
 		List<Account> fromDB = dbOperation.findAccountByCustomerId(account.getCutomerID());
 		System.out.println("DBManager fromDB::" + fromDB);
 		
 		if(CollectionUtils.isEmpty(fromDB)){
-			
+			dbOperation.updateSecAccnt(account);
 		}
 		
 		CustomerAccountRequest response = new CustomerAccountRequest(account.getCutomerID(), account.getCustomerName(),

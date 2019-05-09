@@ -23,8 +23,8 @@ class LoadDatabase {
   @Bean
   CommandLineRunner initDatabase(UserAccountRepository repository) {
     return args -> {
-      System.out.println("Preloading " + repository.save(new Account("fromApp1", "app api", 23, null, "AppApi11")));
-      System.out.println("Preloading " + repository.save(new Account("fromApp2", "app api", 33, null, "AppApi22")));
+     // System.out.println("Preloading " + repository.save(new Account("fromApp1", "app api", 23, null, "AppApi11")));
+      //System.out.println("Preloading " + repository.save(new Account("fromApp2", "app api", 33, null, "AppApi22")));
     };
   }
 }
