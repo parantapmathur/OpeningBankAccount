@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.blueharvest.repository.db.entity.Account;
+import com.blueharvest.repository.utility.ConfigParams;
 import com.blueharvest.repository.ws.CustomerAccountRequest;
 
 
@@ -14,33 +15,34 @@ import com.blueharvest.repository.ws.CustomerAccountRequest;
 public class DBManager {
 	
 	@Autowired DBOperation dbOperation;
+	@Autowired ConfigParams configParam;
 	
-	private static DBManager dbManager;
+	//private static DBManager dbManager;
 	
 	public DBManager() {
 
 	}
 
-	public static DBManager initilize() {
-
-		if (dbManager == null) {
-			synchronized (DBManager.class) {
-				if (dbManager == null) {
-					dbManager = new DBManager();
-				}
-			}
-		}
-		return dbManager;
-	}
+//	public static DBManager initilize() {
+//
+//		if (dbManager == null) {
+//			synchronized (DBManager.class) {
+//				if (dbManager == null) {
+//					dbManager = new DBManager();
+//				}
+//			}
+//		}
+//		return dbManager;
+//	}
 	
 	
 	public Account createSecondaryAcc(CustomerAccountRequest accountDetails){
 		/* Random random = new SecureRandom();
 		accountDetails.setSecondaryAccountNumber(random.toString());*/
 		
-		int length = 80;//utility.getAccountNumLength();
-	    boolean useLetters = true;//utility.useLetters();
-	    boolean useNumbers = true;//utility.useNumbers();
+		int length = configParam.getLength();//80;//getAccountNumLength();
+	    boolean useLetters = configParam.isAllowAlpha();//true;//utility.useLetters();
+	    boolean useNumbers = configParam.isAllowNums();//true;//utility.useNumbers();
 		String generatedString = RandomStringUtils.random(length, useLetters, useNumbers);
 		
 		System.out.println("length::"+length);

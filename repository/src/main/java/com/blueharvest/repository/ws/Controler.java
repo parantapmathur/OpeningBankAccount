@@ -26,6 +26,7 @@ import com.blueharvest.repository.utility.ConfigParams;
 public class Controler {
 
 	@Autowired ConfigParams configParam;
+	@Autowired DBManager dbManager;
      //return 201 instead of 200
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/openSecondaryAccount")
@@ -34,7 +35,7 @@ public class Controler {
     	//return ServiceHelper.initilize().createSecondaryAcc(accountDetails);
 		
     	System.out.println("@@@@@@@@@@@@--------"+configParam.getLength());
-		Account account = DBManager.initilize().createSecondaryAcc(accountDetails);
+		Account account = dbManager.createSecondaryAcc(accountDetails);
 		//accountRepository.save(account);
     	CustomerAccountRequest response = new CustomerAccountRequest(account.getCutomerID(), account.getCustomerName(),
 				account.getCustomerAge(), account.getSecondaryAccountNumber(), account.getPrimaryAccountNumber());
