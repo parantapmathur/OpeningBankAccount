@@ -20,163 +20,138 @@ public class Account {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "ID", nullable = false)
 	private long id;
-	@Column(name = "CUTOMERID", nullable = false)
-	private String cutomerID;
+	
+	@Column(name = "CUSTOMERID", nullable = false)
+	private String customerID;
+	
 	@Column(name = "CUSTOMERNAME", nullable = false)
 	private String customerName;
+	
 	@Column(name = "CUSTOMERAGE", nullable = false)
 	private int customerAge;
+	
 	@Column(name = "SECONDARYACCOUNTNUMBER", nullable = true)
 	private String secondaryAccountNumber;
+	
 	@Column(name = "PRIMARYACCOUNTNUMBER", nullable = false)
 	private String primaryAccountNumber;
 
 	@Column(name = "AMOUNT", nullable = false)
 	private BigDecimal amount = BigDecimal.ZERO;
 	
-	@Column(name = "CURRENCY", nullable = false)
-	private BigDecimal currency;
+	@Column(name = "CURRENCY", nullable = true)
+	private String currency="EUR";
+	
+	@Column(name = "ACCOUNT_TYPE", nullable = true)
+	private String account_type;	
 	
 	public Account() {
 
 	}
 
-	
 	/**
-	 * @param id
-	 * @param cutomerID
+	 * @param CustomerID
 	 * @param customerName
 	 * @param customerAge
 	 * @param secondaryAccountNumber
 	 * @param primaryAccountNumber
 	 * @param amount
 	 * @param currency
+	 * @param account_type
 	 */
-	public Account(long id, String cutomerID, String customerName, int customerAge, String secondaryAccountNumber,
-			String primaryAccountNumber, BigDecimal amount, BigDecimal currency) {
+	public Account(String CustomerID, String customerName, int customerAge, String secondaryAccountNumber,
+			String primaryAccountNumber, BigDecimal amount, String currency, String account_type) {
 		super();
-		this.id = id;
-		this.cutomerID = cutomerID;
+		this.customerID = CustomerID;
 		this.customerName = customerName;
 		this.customerAge = customerAge;
 		this.secondaryAccountNumber = secondaryAccountNumber;
 		this.primaryAccountNumber = primaryAccountNumber;
 		this.amount = amount;
 		this.currency = currency;
+		this.account_type = account_type;
 	}
 
-
-	/**
-	 * @return the cutomerID
-	 */
-	public String getCutomerID() {
-		return cutomerID;
+	
+	public String getCustomerID() {
+		return customerID;
 	}
 
-	/**
-	 * @param cutomerID
-	 *            the cutomerID to set
-	 */
-	public void setCutomerID(String cutomerID) {
-		this.cutomerID = cutomerID;
+	public void setCustomerID(String CustomerID) {
+		this.customerID = CustomerID;
 	}
 
-	/**
-	 * @return the customerName
-	 */
 	public String getCustomerName() {
 		return customerName;
 	}
 
-	/**
-	 * @param customerName
-	 *            the customerName to set
-	 */
 	public void setCustomerName(String customerName) {
 		this.customerName = customerName;
 	}
 
-	/**
-	 * @return the customerAge
-	 */
 	public int getCustomerAge() {
 		return customerAge;
 	}
 
-	/**
-	 * @param customerAge
-	 *            the customerAge to set
-	 */
 	public void setCustomerAge(int customerAge) {
 		this.customerAge = customerAge;
 	}
 
-	/**
-	 * @return the secondaryAccountNumber
-	 */
 	public String getSecondaryAccountNumber() {
 		return secondaryAccountNumber;
 	}
 
-	/**
-	 * @param secondaryAccountNumber
-	 *            the secondaryAccountNumber to set
-	 */
 	public void setSecondaryAccountNumber(String secondaryAccountNumber) {
 		this.secondaryAccountNumber = secondaryAccountNumber;
 	}
 
-	/**
-	 * @return the primaryAccountNumber
-	 */
 	public String getPrimaryAccountNumber() {
 		return primaryAccountNumber;
 	}
 
-	/**
-	 * @param primaryAccountNumber
-	 *            the primaryAccountNumber to set
-	 */
 	public void setPrimaryAccountNumber(String primaryAccountNumber) {
 		this.primaryAccountNumber = primaryAccountNumber;
 	}
-
 
 	public BigDecimal getAmount() {
 		return amount;
 	}
 
-
 	public void setAmount(BigDecimal amount) {
 		this.amount = amount;
 	}
 
-
-	public BigDecimal getCurrency() {
+	public String getCurrency() {
 		return currency;
 	}
 
-
-	public void setCurrency(BigDecimal currency) {
+	public void setCurrency(String currency) {
 		this.currency = currency;
 	}
 
+	public String getAccount_type() {
+		return account_type;
+	}
+
+	public void setAccount_type(String account_type) {
+		this.account_type = account_type;
+	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((account_type == null) ? 0 : account_type.hashCode());
 		result = prime * result + ((amount == null) ? 0 : amount.hashCode());
 		result = prime * result + ((currency == null) ? 0 : currency.hashCode());
 		result = prime * result + customerAge;
 		result = prime * result + ((customerName == null) ? 0 : customerName.hashCode());
-		result = prime * result + ((cutomerID == null) ? 0 : cutomerID.hashCode());
+		result = prime * result + ((customerID == null) ? 0 : customerID.hashCode());
 		result = prime * result + (int) (id ^ (id >>> 32));
 		result = prime * result + ((primaryAccountNumber == null) ? 0 : primaryAccountNumber.hashCode());
 		result = prime * result + ((secondaryAccountNumber == null) ? 0 : secondaryAccountNumber.hashCode());
 		return result;
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -187,6 +162,11 @@ public class Account {
 		if (getClass() != obj.getClass())
 			return false;
 		Account other = (Account) obj;
+		if (account_type == null) {
+			if (other.account_type != null)
+				return false;
+		} else if (!account_type.equals(other.account_type))
+			return false;
 		if (amount == null) {
 			if (other.amount != null)
 				return false;
@@ -204,10 +184,10 @@ public class Account {
 				return false;
 		} else if (!customerName.equals(other.customerName))
 			return false;
-		if (cutomerID == null) {
-			if (other.cutomerID != null)
+		if (customerID == null) {
+			if (other.customerID != null)
 				return false;
-		} else if (!cutomerID.equals(other.cutomerID))
+		} else if (!customerID.equals(other.customerID))
 			return false;
 		if (id != other.id)
 			return false;
@@ -224,13 +204,13 @@ public class Account {
 		return true;
 	}
 
-
 	@Override
 	public String toString() {
-		return "Account [id=" + id + ", cutomerID=" + cutomerID + ", customerName=" + customerName + ", customerAge="
+		return "Account [id=" + id + ", customerID=" + customerID + ", customerName=" + customerName + ", customerAge="
 				+ customerAge + ", secondaryAccountNumber=" + secondaryAccountNumber + ", primaryAccountNumber="
-				+ primaryAccountNumber + ", amount=" + amount + ", currency=" + currency + "]";
+				+ primaryAccountNumber + ", amount=" + amount + ", currency=" + currency + ", account_type="
+				+ account_type + "]";
 	}
-
+	
 	
 }

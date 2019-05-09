@@ -20,8 +20,8 @@ public class Transation {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "ID", nullable = false)
 	private long id;
-	@Column(name = "CUTOMERID", nullable = false)
-	private String cutomerID;
+	@Column(name = "CUSTOMERID", nullable = false)
+	private String customerID;
 	@Column(name = "CUSTOMERNAME", nullable = false)
 	private String customerName;
 	@Column(name = "CUSTOMERAGE", nullable = false)
@@ -37,9 +37,9 @@ public class Transation {
 
 	}
 
-	public Transation(String cutomerID, String customerName, int customerAge, String transationDesc,
+	public Transation(String customerID, String customerName, int customerAge, String transationDesc,
 			String primaryAccountNumber, Timestamp timeStamp) {
-		this.cutomerID = cutomerID;
+		this.customerID = customerID;
 		this.customerName = customerName;
 		this.customerAge = customerAge;
 		this.transationDesc = transationDesc;
@@ -49,12 +49,12 @@ public class Transation {
 		}
 	}
 
-	public String getCutomerID() {
-		return cutomerID;
+	public String getCustomerID() {
+		return customerID;
 	}
 
-	public void setCutomerID(String cutomerID) {
-		this.cutomerID = cutomerID;
+	public void setCustomerID(String customerID) {
+		this.customerID = customerID;
 	}
 
 	public String getCustomerName() {
@@ -99,7 +99,7 @@ public class Transation {
 
 	@Override
 	public String toString() {
-		return "Transation [id=" + id + ", cutomerID=" + cutomerID + ", customerName=" + customerName + ", customerAge="
+		return "Transation [id=" + id + ", customerID=" + customerID + ", customerName=" + customerName + ", customerAge="
 				+ customerAge + ", primaryAccountNumber=" + primaryAccountNumber + ", transationDesc=" + transationDesc
 				+ ", timeStamp=" + timeStamp + "]";
 	}

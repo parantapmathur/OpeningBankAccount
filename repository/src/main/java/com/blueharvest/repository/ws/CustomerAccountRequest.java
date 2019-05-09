@@ -1,112 +1,126 @@
 package com.blueharvest.repository.ws;
 
+import java.math.BigDecimal;
+
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 /**
  * @author Parantap Mathur
  *
  */
 public class CustomerAccountRequest {
-   private String cutomerID;
-   private String customerName;
-   private int customerAge;
-   private String secondaryAccountNumber;
-   private String primaryAccountNumber;
-   
-   public CustomerAccountRequest(){
-	   
-   }
+	@NotNull
+	@Size(min = 15, max = 15, message = "Please valid CustomerID a name")
+	private String customerID;
 
-/**
- * @param cutomerID
- * @param name
- * @param age
- * @param secondaryAccountNumber
- * @param primaryAccountNumber
- */
-public CustomerAccountRequest(String cutomerID, String customerName, int customerAge, String secondaryAccountNumber,
-		String primaryAccountNumber) {
-	this.cutomerID = cutomerID;
-	this.customerName = customerName;
-	this.customerAge = customerAge;
-	this.secondaryAccountNumber = secondaryAccountNumber;
-	this.primaryAccountNumber = primaryAccountNumber;
-}
+	@NotNull
+	private String customerName;
+	
+	@NotNull
+	private int customerAge;
+	private String secondaryAccountNumber;
+	@NotNull
+	@Size(min = 15, max = 15, message = "Please valid CustomerID a name")
+	private String primaryAccountNumber;
+	
+	@NotNull
+	private BigDecimal initialCredit=BigDecimal.ZERO;
+	private String currency;
 
-/**
- * @return the cutomerID
- */
-public String getCutomerID() {
-	return cutomerID;
-}
+	public CustomerAccountRequest() {
 
-/**
- * @param cutomerID the cutomerID to set
- */
-public void setCutomerID(String cutomerID) {
-	this.cutomerID = cutomerID;
-}
+	}
 
-/**
- * @return the customerName
- */
-public String getCustomerName() {
-	return customerName;
-}
+	/**
+	 * @return the cutomerID
+	 */
+	public String getCustomerID() {
+		return customerID;
+	}
 
-/**
- * @param customerName the customerName to set
- */
-public void setCustomerName(String customerName) {
-	this.customerName = customerName;
-}
+	/**
+	 * @param cutomerID
+	 *            the cutomerID to set
+	 */
+	public void setCustomerID(String customerID) {
+		this.customerID = customerID;
+	}
 
-/**
- * @return the customerAge
- */
-public int getCustomerAge() {
-	return customerAge;
-}
+	/**
+	 * @return the customerName
+	 */
+	public String getCustomerName() {
+		return customerName;
+	}
 
-/**
- * @param customerAge the customerAge to set
- */
-public void setCustomerAge(int customerAge) {
-	this.customerAge = customerAge;
-}
+	/**
+	 * @param customerName
+	 *            the customerName to set
+	 */
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
+	}
 
-/**
- * @return the secondaryAccountNumber
- */
-public String getSecondaryAccountNumber() {
-	return secondaryAccountNumber;
-}
+	/**
+	 * @return the customerAge
+	 */
+	public int getCustomerAge() {
+		return customerAge;
+	}
 
-/**
- * @param secondaryAccountNumber the secondaryAccountNumber to set
- */
-public void setSecondaryAccountNumber(String secondaryAccountNumber) {
-	this.secondaryAccountNumber = secondaryAccountNumber;
-}
+	/**
+	 * @param customerAge
+	 *            the customerAge to set
+	 */
+	public void setCustomerAge(int customerAge) {
+		this.customerAge = customerAge;
+	}
 
-/**
- * @return the primaryAccountNumber
- */
-public String getPrimaryAccountNumber() {
-	return primaryAccountNumber;
-}
+	/**
+	 * @return the secondaryAccountNumber
+	 */
+	public String getSecondaryAccountNumber() {
+		return secondaryAccountNumber;
+	}
 
-/**
- * @param primaryAccountNumber the primaryAccountNumber to set
- */
-public void setPrimaryAccountNumber(String primaryAccountNumber) {
-	this.primaryAccountNumber = primaryAccountNumber;
-}
+	/**
+	 * @param secondaryAccountNumber
+	 *            the secondaryAccountNumber to set
+	 */
+	public void setSecondaryAccountNumber(String secondaryAccountNumber) {
+		this.secondaryAccountNumber = secondaryAccountNumber;
+	}
 
-@Override
-public String toString() {
-	return "CustomerAccount [cutomerID=" + cutomerID + ", customerName=" + customerName
-			+ ", customerAge=" + customerAge + ", secondaryAccountNumber=" + secondaryAccountNumber
-			+ ", primaryAccountNumber=" + primaryAccountNumber + "]";
-}
-   
-   
+	/**
+	 * @return the primaryAccountNumber
+	 */
+	public String getPrimaryAccountNumber() {
+		return primaryAccountNumber;
+	}
+
+	/**
+	 * @param primaryAccountNumber
+	 *            the primaryAccountNumber to set
+	 */
+	public void setPrimaryAccountNumber(String primaryAccountNumber) {
+		this.primaryAccountNumber = primaryAccountNumber;
+	}
+
+	public BigDecimal getInitialCredit() {
+		return initialCredit;
+	}
+
+	public void setInitialCredit(BigDecimal initialCredit) {
+		this.initialCredit = initialCredit;
+	}
+
+	public String getCurrency() {
+		return currency;
+	}
+
+	public void setCurrency(String currency) {
+		this.currency = currency;
+	}
+
 }

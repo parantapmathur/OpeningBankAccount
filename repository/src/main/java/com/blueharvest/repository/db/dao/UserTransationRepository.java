@@ -14,7 +14,7 @@ import com.blueharvest.repository.db.entity.Transation;
  */
 @Repository
 public interface UserTransationRepository extends JpaRepository<Transation, Long> { 
-	public ArrayList<Transation> findByCutomerID(String customerID);
+	public ArrayList<Transation> findByCustomerID(String customerID);
 	public ArrayList<Transation> findByCustomerName(String customerName);
 	public ArrayList<Transation> findByPrimaryAccountNumber(String primaryAccountNumber);
 }

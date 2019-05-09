@@ -23,6 +23,12 @@ public class ConfigParams {
 	
 	@Value("${app.account.withNums}")
 	private boolean allowNums;
+	
+	@Value("${app.account.default.currency}") 
+	private String currency;
+	
+	@Value("${app.account.default.accounttype}") 
+	private String accountType;
 
 	/*
 	 * public ConfigParams(@Value("${app.account.num.length}") String length,
@@ -33,6 +39,14 @@ public class ConfigParams {
 	 * this.allowAlpha = allowAlpha; this.allowNums = allowNums; }
 	 */
 	
+	public String getAccountType() {
+		return accountType;
+	}
+
+	public void setAccountType(String accountType) {
+		this.accountType = accountType;
+	}
+
 	public ConfigParams() {
 		// TODO Auto-generated constructor stub
 	}
@@ -72,6 +86,14 @@ public class ConfigParams {
 	 */
 	public void setAllowNums(boolean allowNums) {
 		this.allowNums = allowNums;
+	}
+
+	public String getCurrency() {
+		return currency;
+	}
+
+	public void setCurrency(String currency) {
+		this.currency = currency;
 	}
 	
 	
