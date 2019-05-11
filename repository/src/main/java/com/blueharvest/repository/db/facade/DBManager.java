@@ -1,6 +1,7 @@
 package com.blueharvest.repository.db.facade;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -58,16 +59,18 @@ public class DBManager {
 		//String generatedString = RandomStringUtils.random(length, useLetters, useNumbers);
 
 		
-		accountRepo.findByCustomerID(customerid)accountDetails.getCustomerID();
+		Customer_Account customerAccount = accountRepo.findbyCustomerIDAndAccountType(accountDetails.getCustomerID(), "primary");
 		
 		if (accountDetails.getInitialCredit().compareTo(BigDecimal.ZERO) > 0) {
-			saveTransation(accountDetails);
+			customerAccount.setAccountBalance(customerAccount.getAccountBalance().subtract(accountDetails.getInitialCredit()));
+			accountRepo.save(customerAccount);
+			saveNewTransation(accountDetails);
 		}
 
 		return null;
 	}
 
-	public boolean saveTransation(CustomerAccountRequestDTO accountDetails) {
+	public boolean saveNewTransation(CustomerAccountRequestDTO accountDetails) {
 
 		logger.info("Going to Saving transation");
 		transationRepository.save(new Customer_transaction());

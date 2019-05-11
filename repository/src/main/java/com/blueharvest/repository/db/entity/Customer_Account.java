@@ -1,5 +1,6 @@
 package com.blueharvest.repository.db.entity;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 
 import javax.persistence.Column;
@@ -35,6 +36,10 @@ public class Customer_Account {
 	
 	@Column(name = "timestamp", nullable = false, updatable = false)
 	private Timestamp timestamp;
+	
+	@Column(name = "account_balance", nullable = false)
+	private BigDecimal accountBalance = BigDecimal.ZERO;
+	
 
 //	@ManyToOne
 //	@JoinColumn(name = "customer_id", nullable = false)
@@ -158,6 +163,26 @@ public class Customer_Account {
 	 */
 	public void setCustomerID(String customerID) {
 		this.customerID = customerID;
+	}
+
+
+	/**
+	 * @return the accountBalance
+	 */
+	public BigDecimal getAccountBalance() {
+		synchronized (accountBalance) {
+			return accountBalance;
+		}
+	}
+
+
+	/**
+	 * @param accountBalance the accountBalance to set
+	 */
+	public void setAccountBalance(BigDecimal accountBalance) {
+		synchronized (accountBalance) {
+			this.accountBalance = accountBalance;
+		}
 	}
 
 
