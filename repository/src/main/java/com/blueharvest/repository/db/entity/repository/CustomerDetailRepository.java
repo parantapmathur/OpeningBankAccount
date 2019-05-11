@@ -12,7 +12,7 @@ import com.blueharvest.repository.db.entity.Customer_Detail;
  *
  */
 @Repository
-public interface CustomerDetailRepository extends JpaRepository<Contact_Detail, Long> { 
+public interface CustomerDetailRepository extends JpaRepository<Customer_Detail, Long> { 
 
 public Customer_Detail findByCustomerID(String customerID);
 }
