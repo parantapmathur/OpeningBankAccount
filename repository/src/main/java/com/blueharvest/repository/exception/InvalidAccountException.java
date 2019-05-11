@@ -7,7 +7,7 @@ package com.blueharvest.repository.exception;
  * @author Parantap Mathur
  *
  */
-public class InvalidAccountException extends Exception {
+public class InvalidAccountException extends RuntimeException {
 
 	/**
 	 * 

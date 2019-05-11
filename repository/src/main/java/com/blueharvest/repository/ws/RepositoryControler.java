@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.blueharvest.repository.exception.InvalidAccountException;
 import com.blueharvest.repository.ws.dto.CustomerAccountRequestDTO;
+import com.blueharvest.repository.ws.request.CustomerAccountRequest;
 
 /**
  * @author Parantap Mathur

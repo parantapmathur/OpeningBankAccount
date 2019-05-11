@@ -16,8 +16,8 @@ import com.blueharvest.repository.db.entity.repository.CustomerDetailRepository;
 import com.blueharvest.repository.db.entity.repository.CustomerTransationRepository;
 import com.blueharvest.repository.exception.InvalidAccountException;
 import com.blueharvest.repository.utility.ConfigParams;
-import com.blueharvest.repository.ws.CustomerAccountRequest;
 import com.blueharvest.repository.ws.dto.CustomerAccountRequestDTO;
+import com.blueharvest.repository.ws.request.CustomerAccountRequest;
 
 @Component
 public class DBManager {

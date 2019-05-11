@@ -1,4 +1,4 @@
-package com.blueharvest.repository.ws;
+package com.blueharvest.repository.ws.request;
 
 import java.math.BigDecimal;
 
@@ -17,13 +17,6 @@ public class CustomerAccountRequest {
 	@NotNull
 	private String customerName;
 	
-//	@NotNull
-//	private int customerAge;
-//	private String secondaryAccountNumber;
-//	@NotNull
-//	@Size(min = 15, max = 15, message = "Please valid CustomerID a name")
-//	private String primaryAccountNumber;
-//	
 	@NotNull
 	private BigDecimal initialCredit=BigDecimal.ZERO;
 	
@@ -63,51 +56,6 @@ public class CustomerAccountRequest {
 	public void setCustomerName(String customerName) {
 		this.customerName = customerName;
 	}
-
-//	/**
-//	 * @return the customerAge
-//	 */
-//	public int getCustomerAge() {
-//		return customerAge;
-//	}
-//
-//	/**
-//	 * @param customerAge
-//	 *            the customerAge to set
-//	 */
-//	public void setCustomerAge(int customerAge) {
-//		this.customerAge = customerAge;
-//	}
-//
-//	/**
-//	 * @return the secondaryAccountNumber
-//	 */
-//	public String getSecondaryAccountNumber() {
-//		return secondaryAccountNumber;
-//	}
-//
-//	/**
-//	 * @param secondaryAccountNumber
-//	 *            the secondaryAccountNumber to set
-//	 */
-//	public void setSecondaryAccountNumber(String secondaryAccountNumber) {
-//		this.secondaryAccountNumber = secondaryAccountNumber;
-//	}
-
-//	/**
-//	 * @return the primaryAccountNumber
-//	 */
-//	public String getPrimaryAccountNumber() {
-//		return primaryAccountNumber;
-//	}
-//
-//	/**
-//	 * @param primaryAccountNumber
-//	 *            the primaryAccountNumber to set
-//	 */
-//	public void setPrimaryAccountNumber(String primaryAccountNumber) {
-//		this.primaryAccountNumber = primaryAccountNumber;
-//	}
 
 	public BigDecimal getInitialCredit() {
 		return initialCredit;
