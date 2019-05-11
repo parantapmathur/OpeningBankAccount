@@ -1,5 +1,6 @@
 package com.blueharvest.repository.db.entity;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 
 import javax.persistence.Column;
@@ -7,8 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -22,25 +21,30 @@ public class Customer_transaction {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "transation_id", nullable = false)
 	private long transation_id;
-	@Column(name = "CUSTOMERID", nullable = false)
-	private String customerID;
-	@Column(name = "description", nullable = false)
+	@Column(name = "description", nullable = false,length=250)
 	private String description;
-	@Column(name = "transaction_type", nullable = false)
-	private int transaction_type;
+	@Column(name = "transaction_type", nullable = false,length=2)
+	private String transaction_type;
 	@Column(name = "amount_in_EUR", nullable = false)
-	private String amount_in_EUR;
+	private BigDecimal amount_in_EUR;
 	@Column(name = "TIMESTAMP", nullable = false)
 	private Timestamp timeStamp=new Timestamp(System.currentTimeMillis());
 	
-	@ManyToOne
-	@JoinColumn(name = "customer_id")
-	private Customer_Detail customer_Detail;
 	
-	@ManyToOne
-	@JoinColumn(name = "account_id")
-	private Customer_Account account_id;
+	@Column(name = "account_number", nullable = false)
+	private String accountNumber;
 	
+	@Column(name = "customer_id", nullable = false)
+	private String customerID;
+	
+//	@ManyToOne
+//	@JoinColumn(name = "customer_id",nullable=false)
+//	private Customer_Detail customerDetail;
+//	
+//	@ManyToOne
+//	@JoinColumn(name = "account_id",nullable=false)
+//	private Customer_Account customerAccount;
+//	
 
 	public Customer_transaction() {
 
@@ -48,18 +52,18 @@ public class Customer_transaction {
 
 
 	/**
-	 * @return the customerID
+	 * @return the transation_id
 	 */
-	public String getCustomerID() {
-		return customerID;
+	public long getTransation_id() {
+		return transation_id;
 	}
 
 
 	/**
-	 * @param customerID the customerID to set
+	 * @param transation_id the transation_id to set
 	 */
-	public void setCustomerID(String customerID) {
-		this.customerID = customerID;
+	public void setTransation_id(long transation_id) {
+		this.transation_id = transation_id;
 	}
 
 
@@ -82,7 +86,7 @@ public class Customer_transaction {
 	/**
 	 * @return the transaction_type
 	 */
-	public int getTransaction_type() {
+	public String getTransaction_type() {
 		return transaction_type;
 	}
 
@@ -90,7 +94,7 @@ public class Customer_transaction {
 	/**
 	 * @param transaction_type the transaction_type to set
 	 */
-	public void setTransaction_type(int transaction_type) {
+	public void setTransaction_type(String transaction_type) {
 		this.transaction_type = transaction_type;
 	}
 
@@ -98,7 +102,7 @@ public class Customer_transaction {
 	/**
 	 * @return the amount_in_EUR
 	 */
-	public String getAmount_in_EUR() {
+	public BigDecimal getAmount_in_EUR() {
 		return amount_in_EUR;
 	}
 
@@ -106,7 +110,7 @@ public class Customer_transaction {
 	/**
 	 * @param amount_in_EUR the amount_in_EUR to set
 	 */
-	public void setAmount_in_EUR(String amount_in_EUR) {
+	public void setAmount_in_EUR(BigDecimal amount_in_EUR) {
 		this.amount_in_EUR = amount_in_EUR;
 	}
 
@@ -128,109 +132,70 @@ public class Customer_transaction {
 
 
 	/**
-	 * @return the customer_Detail
+	 * @return the accountNumber
 	 */
-	public Customer_Detail getCustomer_Detail() {
-		return customer_Detail;
+	public String getAccountNumber() {
+		return accountNumber;
 	}
 
 
 	/**
-	 * @param customer_Detail the customer_Detail to set
+	 * @param accountNumber the accountNumber to set
 	 */
-	public void setCustomer_Detail(Customer_Detail customer_Detail) {
-		this.customer_Detail = customer_Detail;
+	public void setAccountNumber(String accountNumber) {
+		this.accountNumber = accountNumber;
 	}
 
 
 	/**
-	 * @return the account_id
+	 * @return the customerID
 	 */
-	public Customer_Account getAccount_id() {
-		return account_id;
+	public String getCustomerID() {
+		return customerID;
 	}
 
 
 	/**
-	 * @param account_id the account_id to set
+	 * @param customerID the customerID to set
 	 */
-	public void setAccount_id(Customer_Account account_id) {
-		this.account_id = account_id;
-	}
-
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((account_id == null) ? 0 : account_id.hashCode());
-		result = prime * result + ((amount_in_EUR == null) ? 0 : amount_in_EUR.hashCode());
-		result = prime * result + ((customerID == null) ? 0 : customerID.hashCode());
-		result = prime * result + ((customer_Detail == null) ? 0 : customer_Detail.hashCode());
-		result = prime * result + ((description == null) ? 0 : description.hashCode());
-		result = prime * result + ((timeStamp == null) ? 0 : timeStamp.hashCode());
-		result = prime * result + transaction_type;
-		result = prime * result + (int) (transation_id ^ (transation_id >>> 32));
-		return result;
-	}
-
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Customer_transaction other = (Customer_transaction) obj;
-		if (account_id == null) {
-			if (other.account_id != null)
-				return false;
-		} else if (!account_id.equals(other.account_id))
-			return false;
-		if (amount_in_EUR == null) {
-			if (other.amount_in_EUR != null)
-				return false;
-		} else if (!amount_in_EUR.equals(other.amount_in_EUR))
-			return false;
-		if (customerID == null) {
-			if (other.customerID != null)
-				return false;
-		} else if (!customerID.equals(other.customerID))
-			return false;
-		if (customer_Detail == null) {
-			if (other.customer_Detail != null)
-				return false;
-		} else if (!customer_Detail.equals(other.customer_Detail))
-			return false;
-		if (description == null) {
-			if (other.description != null)
-				return false;
-		} else if (!description.equals(other.description))
-			return false;
-		if (timeStamp == null) {
-			if (other.timeStamp != null)
-				return false;
-		} else if (!timeStamp.equals(other.timeStamp))
-			return false;
-		if (transaction_type != other.transaction_type)
-			return false;
-		if (transation_id != other.transation_id)
-			return false;
-		return true;
-	}
-
-
-	@Override
-	public String toString() {
-		return "customer_transaction [transation_id=" + transation_id + ", customerID=" + customerID + ", description="
-				+ description + ", transaction_type=" + transaction_type + ", amount_in_EUR=" + amount_in_EUR
-				+ ", timeStamp=" + timeStamp + ", customer_Detail=" + customer_Detail + ", account_id=" + account_id
-				+ "]";
+	public void setCustomerID(String customerID) {
+		this.customerID = customerID;
 	}
 	
 	
 
+//
+//	/**
+//	 * @return the customerDetail
+//	 */
+//	public Customer_Detail getCustomerDetail() {
+//		return customerDetail;
+//	}
+//
+//
+//	/**
+//	 * @param customerDetail the customerDetail to set
+//	 */
+//	public void setCustomerDetail(Customer_Detail customerDetail) {
+//		this.customerDetail = customerDetail;
+//	}
+//
+//
+//	/**
+//	 * @return the customerAccount
+//	 */
+//	public Customer_Account getCustomerAccount() {
+//		return customerAccount;
+//	}
+//
+//
+//	/**
+//	 * @param customerAccount the customerAccount to set
+//	 */
+//	public void setCustomerAccount(Customer_Account customerAccount) {
+//		this.customerAccount = customerAccount;
+//	}
 
+
+	
 }

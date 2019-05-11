@@ -1,18 +1,12 @@
 package com.blueharvest.repository.db.entity;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.sql.Timestamp;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -27,25 +21,27 @@ public class Customer_Detail {
 	@Column(name = "detail_id", nullable = false)
 	private long detail_id;
 
-	@Column(name = "customer_Name", nullable = false)
-	private String customer_Name;
+	@Column(name = "customer_name", nullable = false)
+	private String customerName;
 
-	@Column(name = "customer_Age", nullable = false)
-	private String customer_Age;
+	@Column(name = "customer_age", nullable = false,length=3)
+	private String customerAge;
 
 	@Column(name = "dateofJoining", nullable = false)
-	private int dateofJoining;
+	private Timestamp dateofJoining;
 
-	@Column(name = "timestamp", nullable = true)
-	private String timestamp;
+	@Column(name = "timestamp", nullable = false,updatable = false,columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+	private Timestamp timestamp;
 
-	@OneToOne
-	@JoinColumn(name = "contact_id")
-	private Contact_Detail contact_Detail;
+	@Column(name = "customer_id", nullable = false)
+	private String customerID;
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "customer_id")
-	private Set<Customer_transaction> statt = new HashSet<Customer_transaction>();
+	
+//	@OneToOne
+//	@JoinColumn(name = "contact_id")
+//	private Contact_Detail contact_Detail;
 
+	
 	public Customer_Detail() {
 
 	}
@@ -65,73 +61,87 @@ public class Customer_Detail {
 	}
 
 	/**
-	 * @return the customer_Name
+	 * @return the customerName
 	 */
-	public String getCustomer_Name() {
-		return customer_Name;
+	public String getCustomerName() {
+		return customerName;
 	}
 
 	/**
-	 * @param customer_Name the customer_Name to set
+	 * @param customerName the customerName to set
 	 */
-	public void setCustomer_Name(String customer_Name) {
-		this.customer_Name = customer_Name;
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
 	}
 
 	/**
-	 * @return the customer_Age
+	 * @return the customerAge
 	 */
-	public String getCustomer_Age() {
-		return customer_Age;
+	public String getCustomerAge() {
+		return customerAge;
 	}
 
 	/**
-	 * @param customer_Age the customer_Age to set
+	 * @param customerAge the customerAge to set
 	 */
-	public void setCustomer_Age(String customer_Age) {
-		this.customer_Age = customer_Age;
+	public void setCustomerAge(String customerAge) {
+		this.customerAge = customerAge;
 	}
 
 	/**
 	 * @return the dateofJoining
 	 */
-	public int getDateofJoining() {
+	public Timestamp getDateofJoining() {
 		return dateofJoining;
 	}
 
 	/**
 	 * @param dateofJoining the dateofJoining to set
 	 */
-	public void setDateofJoining(int dateofJoining) {
+	public void setDateofJoining(Timestamp dateofJoining) {
 		this.dateofJoining = dateofJoining;
 	}
 
 	/**
 	 * @return the timestamp
 	 */
-	public String getTimestamp() {
+	public Timestamp getTimestamp() {
 		return timestamp;
 	}
 
 	/**
 	 * @param timestamp the timestamp to set
 	 */
-	public void setTimestamp(String timestamp) {
+	public void setTimestamp(Timestamp timestamp) {
 		this.timestamp = timestamp;
 	}
 
+//	/**
+//	 * @return the contact_Detail
+//	 */
+//	public Contact_Detail getContact_Detail() {
+//		return contact_Detail;
+//	}
+//
+//	/**
+//	 * @param contact_Detail the contact_Detail to set
+//	 */
+//	public void setContact_Detail(Contact_Detail contact_Detail) {
+//		this.contact_Detail = contact_Detail;
+//	}
+
 	/**
-	 * @return the contact_Detail
+	 * @return the customer_id
 	 */
-	public Contact_Detail getContact_Detail() {
-		return contact_Detail;
+	public String getCustomerID() {
+		return customerID;
 	}
 
 	/**
-	 * @param contact_Detail the contact_Detail to set
+	 * @param customer_id the customer_id to set
 	 */
-	public void setContact_Detail(Contact_Detail contact_Detail) {
-		this.contact_Detail = contact_Detail;
+	public void setCustomerID(String customerID) {
+		this.customerID = customerID;
 	}
 
 }

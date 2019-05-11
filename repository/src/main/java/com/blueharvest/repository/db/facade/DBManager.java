@@ -1,22 +1,18 @@
 package com.blueharvest.repository.db.facade;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 
-import org.apache.commons.lang3.RandomStringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.util.CollectionUtils;
 
-import com.blueharvest.repository.db.dao.UserAccountRepository;
-import com.blueharvest.repository.db.dao.UserTransationRepository;
-import com.blueharvest.repository.db.dto.AccountDTO;
 import com.blueharvest.repository.db.entity.Customer_Account;
-import com.blueharvest.repository.db.entity.Transation;
+import com.blueharvest.repository.db.entity.Customer_Detail;
+import com.blueharvest.repository.db.entity.Customer_transaction;
+import com.blueharvest.repository.db.entity.repository.CustomerDetailRepository;
+import com.blueharvest.repository.db.entity.repository.CustomerTransationRepository;
+import com.blueharvest.repository.exception.InvalidAccountException;
 import com.blueharvest.repository.utility.ConfigParams;
 import com.blueharvest.repository.ws.CustomerAccountRequest;
 
@@ -27,10 +23,13 @@ public class DBManager {
 
 	@Autowired
 	AccountDBOperation dbOperation;
+//	@Autowired
+//	CustomerAccountRepository accountRepo;
 	@Autowired
-	UserAccountRepository accountRepo;
+	CustomerTransationRepository transationRepository;
+	
 	@Autowired
-	UserTransationRepository transationRepository;
+	CustomerDetailRepository customerDetailRepository;
 	@Autowired
 	ConfigParams configParam;
 
@@ -38,7 +37,7 @@ public class DBManager {
 
 	}
 
-	public Customer_Account createSecondaryAccnt(CustomerAccountRequest accountDetails) {
+	public Customer_Account createSecondaryAccnt(CustomerAccountRequest accountDetails) throws InvalidAccountException {
 		/*
 		 * Random random = new SecureRandom();
 		 * accountDetails.setSecondaryAccountNumber(random.toString());
@@ -52,8 +51,10 @@ public class DBManager {
 		logger.info("useLetters::" + useLetters);
 		logger.info("useNumbers::" + useNumbers);
 
-		ArrayList<AccountDTO> accountDTOList = getAccountDetails(accountDetails.getCustomerID(), accountDetails.getCustomerName());
-		String generatedString = RandomStringUtils.random(length, useLetters, useNumbers);
+		Customer_Detail customerDetails = getCustomerDetails(accountDetails.getCustomerID(), accountDetails.getCustomerName());
+		customerDetails.getCustomerAge();
+		
+		//String generatedString = RandomStringUtils.random(length, useLetters, useNumbers);
 
 		if (accountDetails.getInitialCredit().compareTo(BigDecimal.ZERO) > 0) {
 			saveTransation(accountDetails);// as per point 4
@@ -65,23 +66,20 @@ public class DBManager {
 	public boolean saveTransation(CustomerAccountRequest accountDetails) {
 
 		logger.info("Going to Saving transation");
-		transationRepository.save(new Transation());
+		transationRepository.save(new Customer_transaction());
 		logger.info("Transation Saved");
 		return true;
 	}
 
-	public ArrayList<AccountDTO> getAccountDetails(String customerID, String customerName) {
-		ArrayList<AccountDTO> accountDtoList = null;
-		ArrayList<Customer_Account> accountList = accountRepo.findbyCustomerIDAndCustomerName(customerID, customerName);
-		if(!CollectionUtils.isEmpty(accountList)) {
-			accountDtoList = new ArrayList<AccountDTO>(accountList.size());
-			for (Customer_Account account : accountList) {
-				AccountDTO accountDto = new AccountDTO();
-				BeanUtils.copyProperties(account, accountDto);
-				accountDtoList.add(accountDto);
-			}			
+	public Customer_Detail getCustomerDetails(String customerID, String customerName) throws InvalidAccountException {
+		Customer_Detail customerDetail = customerDetailRepository.findByCustomerID(customerID);
+		if(customerDetail!=null) {
+			customerDetail.getCustomerName();
+		}else {
+			throw new InvalidAccountException("Customer Not Found");
 		}
-		return accountDtoList;
+			
+		return customerDetail;
 	}
 
 }

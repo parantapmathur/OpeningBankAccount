@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.blueharvest.repository.exception.AccountEligibiltyException;
+import com.blueharvest.repository.exception.InvalidAccountException;
 
 /**
  * @author Parantap Mathur
@@ -41,7 +42,9 @@ public class RepositoryControler {
 			
 		} /*
 			 * catch (ReposityServiceException ex) { // error response }
-			 *//*
+			 */ catch (InvalidAccountException e) {
+				 logger.error("Custmer not registered with customer ID: " + accountDetails.getCustomerID());
+			}/*
 				 * catch (AccountEligibiltyException e) { // TODO Auto-generated catch block
 				 * e.printStackTrace(); }
 				 */ finally {

@@ -1,19 +1,12 @@
 package com.blueharvest.repository.db.entity;
 
 import java.sql.Timestamp;
-import java.util.HashSet;
-import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -28,28 +21,29 @@ public class Customer_Account {
 	@Column(name = "account_id", nullable = false)
 	private long accountID;
 	
-	@Column(name = "account_type", nullable = false)
+	@Column(name = "account_type", nullable = false,length=20)
 	private String accountType;
 	
-	@Column(name = "account_number", nullable = false)
+	@Column(name = "account_number", nullable = false,length=20)
 	private String accountNumber;
 	
-	@Column(name = "account_branch", nullable = false)
-	private int accountBranch;
+	@Column(name = "account_branch", nullable = false,length=20)
+	private String accountBranch;
 	
-	@Column(name = "account_description", nullable = true)
+	@Column(name = "account_description", nullable = false,length=100)
 	private String accountDescription;
 	
-	@Column(name = "timestamp", nullable = false)
+	@Column(name = "timestamp", nullable = false, updatable = false)
 	private Timestamp timestamp;
 
-	@ManyToOne
-	@JoinColumn(name = "customer_id")
-	private Customer_Detail customerDetail;
-	
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "customer_id")
-	private Set<Customer_transaction> statt = new HashSet<Customer_transaction>();
+//	@ManyToOne
+//	@JoinColumn(name = "customer_id", nullable = false)
+//	private Customer_Detail customerDetail;
 
+	@Column(name = "customer_id", nullable = false,length=20)
+	private String customerID;
+	
+	
 	public Customer_Account() {
 
 	}
@@ -106,7 +100,7 @@ public class Customer_Account {
 	/**
 	 * @return the accountBranch
 	 */
-	public int getAccountBranch() {
+	public String getAccountBranch() {
 		return accountBranch;
 	}
 
@@ -114,7 +108,7 @@ public class Customer_Account {
 	/**
 	 * @param accountBranch the accountBranch to set
 	 */
-	public void setAccountBranch(int accountBranch) {
+	public void setAccountBranch(String accountBranch) {
 		this.accountBranch = accountBranch;
 	}
 
@@ -152,18 +146,36 @@ public class Customer_Account {
 
 
 	/**
-	 * @return the customerDetail
+	 * @return the customerID
 	 */
-	public Customer_Detail getCustomerDetail() {
-		return customerDetail;
+	public String getCustomerID() {
+		return customerID;
 	}
 
 
 	/**
-	 * @param customerDetail the customerDetail to set
+	 * @param customerID the customerID to set
 	 */
-	public void setCustomerDetail(Customer_Detail customerDetail) {
-		this.customerDetail = customerDetail;
+	public void setCustomerID(String customerID) {
+		this.customerID = customerID;
 	}
+
+
+
+//
+//	/**
+//	 * @return the customerDetail
+//	 */
+//	public Customer_Detail getCustomerDetail() {
+//		return customerDetail;
+//	}
+//
+//
+//	/**
+//	 * @param customerDetail the customerDetail to set
+//	 */
+//	public void setCustomerDetail(Customer_Detail customerDetail) {
+//		this.customerDetail = customerDetail;
+//	}
 
 }

@@ -11,7 +11,7 @@ import javax.validation.constraints.Size;
  */
 public class CustomerAccountRequest {
 	@NotNull
-	@Size(min = 10, max = 10, message = "Please valid CustomerID a name")
+	@Size(min = 8, max = 10, message = "Please valid CustomerID a name")
 	private String customerID;
 
 	@NotNull

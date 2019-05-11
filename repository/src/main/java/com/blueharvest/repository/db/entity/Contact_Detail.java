@@ -19,40 +19,57 @@ public class Contact_Detail {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "contact_id", nullable = false)
-	private long contact_id;
-	@Column(name = "email_id", nullable = false)
+	private long contactID;
+	@Column(name = "email_id", nullable = false,length=50)
 	private String email_id;
 	@Column(name = "modile_num", nullable = false)
 	private String modile_num;
 	@Column(name = "landline_num", nullable = false)
 	private int landline_num;
-	@Column(name = "address", nullable = false)
+	@Column(name = "address", nullable = false,length=200)
 	private String address;
 	@Column(name = "TIMESTAMP", nullable = false)
 	private Timestamp timeStamp=new Timestamp(System.currentTimeMillis());
 	
+	@Column(name = "customer_id", nullable = false,length=20)
+	private String customerID;
+	
+
+	/**
+	 * @return the contactID
+	 */
+	public long getContactID() {
+		return contactID;
+	}
+
+
+	/**
+	 * @param contactID the contactID to set
+	 */
+	public void setContactID(long contactID) {
+		this.contactID = contactID;
+	}
+
+
+	/**
+	 * @return the customerID
+	 */
+	public String getCustomerID() {
+		return customerID;
+	}
+
+
+	/**
+	 * @param customerID the customerID to set
+	 */
+	public void setCustomerID(String customerID) {
+		this.customerID = customerID;
+	}
+
+
 	public Contact_Detail() {
 
 	}
-
-
-
-	/**
-	 * @return the contact_id
-	 */
-	public long getContact_id() {
-		return contact_id;
-	}
-
-
-
-	/**
-	 * @param contact_id the contact_id to set
-	 */
-	public void setContact_id(long contact_id) {
-		this.contact_id = contact_id;
-	}
-
 
 
 	/**
