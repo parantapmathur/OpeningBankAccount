@@ -1,0 +1,41 @@
+
+All the sequence diagrams are available in \OpeningBankAccount\ApplicationRelated\SeqDigram
+
+Steps to run the application:
+1. Download the code from https://github.com/parantapmathur/OpeningBankAccount
+2. open all 3 projects (Account, repository, and transaction) in STS eclipse.
+3. to run Account project by right click on the project and run as spring boot application.
+4. for the other 2 services please use command prompt and run below jars :
+	a. OpeningBankAccount\ApplicationRelated\Executable-jars\repository-0.0.1-SNAPSHOT.jar 
+	b. OpeningBankAccount\ApplicationRelated\Executable-jars\transaction-0.0.1-SNAPSHOT.jar command prompt 
+5. open 1st command prompt and goto the location where jars are saved, the command to run jars in the command prompt: java -jar transaction-0.0.1-SNAPSHOT.jar
+6. open 2nd command prompt and goto the location where jars are saved, the command to run jars in the command prompt: java -jar repository-0.0.1-SNAPSHOT.jar
+
+Steps to use the application:
+1. enter URL in the web browser: http://localhost:8180/login
+note: please ignore the error page. 
+2. then enter: http://localhost:8180/openAccount
+3. enter test data, on the HTML form:
+	customerID: 10101011
+	customerName: parantap
+	initial Credit:100
+4. you secondary account will be created.
+5. to check all the transaction, enter below URL:
+	http://localhost:8380/findAllTransations
+	
+6. check the h2 console to check the DB entries with below URL:
+	http://localhost:8280/h2/
+	
+	query to run to check the data:
+	SELECT * FROM CUSTOMER_TRANSACTION ;
+	SELECT * FROM CUSTOMER_ACCOUNT_DETAILS ;
+	SELECT * FROM CUSTOMER_DETAIL ;
+	SELECT * FROM CONTACT_DETAIL ;
+	
+	
+	there are 4 tables for this project, the ER diagram is present in folder: ./ApplicationRelated:
+	tables : 
+		1. CUSTOMER_TRANSACTION will have all the transaction done on all accounts.
+		2. CUSTOMER_ACCOUNT_DETAILS will have the account present in the application.
+		3. CUSTOMER_DETAIL, all customer details will be available here in this table.
+		4. CONTACT_DETAIL, all the contact info will be available here.
