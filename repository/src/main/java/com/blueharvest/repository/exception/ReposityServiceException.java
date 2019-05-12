@@ -14,6 +14,21 @@ public class ReposityServiceException extends RuntimeException {
 	 */
 	private static final long serialVersionUID = -4519782435069472016L;
 
+	private String errorCode;
+
+	/**
+	 * @return the errorCode
+	 */
+	public String getErrorCode() {
+		return errorCode;
+	}
+
+	/**
+	 * @param errorCode the errorCode to set
+	 */
+	public void setErrorCode(String errorCode) {
+		this.errorCode = errorCode;
+	}
 	/**
 	 * 
 	 */

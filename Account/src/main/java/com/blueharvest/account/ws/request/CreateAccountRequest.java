@@ -12,13 +12,10 @@ import java.math.BigDecimal;
 public class CreateAccountRequest {
 	private String customerID;
 	private String customerName;
-	private BigDecimal initialCredit=BigDecimal.ZERO;
-	private String currency;
+	private BigDecimal initialCredit;
+	private String currency="EUR";
 
-	public CreateAccountRequest() {
-
-	}
-
+	
 	/**
 	 * @return the cutomerID
 	 */

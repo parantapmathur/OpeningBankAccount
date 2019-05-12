@@ -13,7 +13,21 @@ public class InvalidAccountException extends RuntimeException {
 	 * 
 	 */
 	private static final long serialVersionUID = -8741075736422072370L;
+	private String errorCode;
 
+	/**
+	 * @return the errorCode
+	 */
+	public String getErrorCode() {
+		return errorCode;
+	}
+
+	/**
+	 * @param errorCode the errorCode to set
+	 */
+	public void setErrorCode(String errorCode) {
+		this.errorCode = errorCode;
+	}
 	/**
 	 * 
 	 */

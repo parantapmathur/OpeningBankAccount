@@ -13,6 +13,21 @@ public class InsufficientBalanceException extends RuntimeException {
 	 * 
 	 */
 	private static final long serialVersionUID = -2711894985468721468L;
+	private String errorCode;
+
+	/**
+	 * @return the errorCode
+	 */
+	public String getErrorCode() {
+		return errorCode;
+	}
+
+	/**
+	 * @param errorCode the errorCode to set
+	 */
+	public void setErrorCode(String errorCode) {
+		this.errorCode = errorCode;
+	}
 
 	/**
 	 * 

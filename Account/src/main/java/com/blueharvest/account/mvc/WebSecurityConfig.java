@@ -1,5 +1,8 @@
 package com.blueharvest.account.mvc;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -10,6 +13,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
+import com.blueharvest.account.util.ConfigParams;
+
 /**
  * @author Parantap Mathur
  *
@@ -17,7 +22,11 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-    @Override
+  
+	@Autowired ConfigParams configParam;
+	Logger logger = LoggerFactory.getLogger(this.getClass());
+	
+	@Override
     protected void configure(HttpSecurity http) throws Exception {
         http
             .authorizeRequests()
@@ -35,11 +44,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     @Override
     public UserDetailsService userDetailsService() {
-        UserDetails user =
+       String userName = configParam.getUser();
+       String password = configParam.getPassword();
+       String role  = configParam.getRole();
+    	
+    	UserDetails user =
              User.withDefaultPasswordEncoder()
-                .username("BlueHarvest")
-                .password("password")
-                .roles("USER")
+                .username(userName)
+                .password(password)
+                .roles(role)
                 .build();
 
         return new InMemoryUserDetailsManager(user);
