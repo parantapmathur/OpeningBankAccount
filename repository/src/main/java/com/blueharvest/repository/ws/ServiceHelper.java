@@ -1,19 +1,25 @@
 package com.blueharvest.repository.ws;
 
+import java.util.ArrayList;
+
 import javax.ws.rs.core.Response;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.blueharvest.repository.db.entity.Customer_Detail;
+import com.blueharvest.repository.db.entity.dto.CustomerAccountDTO;
 import com.blueharvest.repository.db.facade.DBManager;
 import com.blueharvest.repository.exception.InsufficientBalanceException;
 import com.blueharvest.repository.exception.InvalidAccountException;
+import com.blueharvest.repository.exception.WaitTimeOutException;
 import com.blueharvest.repository.exception.util.InsufficientBalanceExceptionMapper;
 import com.blueharvest.repository.exception.util.InvalidAccountExceptionMapper;
 import com.blueharvest.repository.exception.util.ReposityServiceExceptionMapper;
+import com.blueharvest.repository.exception.util.WaitTimeOutExceptionMapper;
 import com.blueharvest.repository.utility.ConfigParams;
 import com.blueharvest.repository.ws.dto.CustomerAccountRequestDTO;
+import com.blueharvest.repository.ws.dto.TransactionDAO;
 
 @Component
 public class ServiceHelper {
@@ -32,18 +38,16 @@ public class ServiceHelper {
 		return false; 
 	}
 
-	public void updateAccountDetails(CustomerAccountRequestDTO accountDetails) throws InvalidAccountException {
+	public CustomerAccountDTO updateAccountDetails(CustomerAccountRequestDTO accountDetails) throws InvalidAccountException {
 
-		accountDetails.getCustomerID();
-		accountDetails.getCustomerName();
-		accountDetails.getCurrency();
-		accountDetails.getInitialCredit();
+		CustomerAccountDTO secondaryAccntDTO = dbManager.createSecondaryAccnt(accountDetails);
+
+		return secondaryAccntDTO;
 		
-		dbManager.createSecondaryAccnt(accountDetails);
 	}
 	
 	
-	public static Response handleExceptions(RuntimeException ex) {
+	public Response handleExceptions(Exception ex) {
 		Response response = null;
 		if (null != ex) {
 			if (ex instanceof InsufficientBalanceException) {
@@ -52,12 +56,21 @@ public class ServiceHelper {
 			} else if (ex instanceof InvalidAccountException) {
 				response = new InvalidAccountExceptionMapper()
 						.toResponse((InvalidAccountException) ex);
+			} else if (ex instanceof WaitTimeOutException) {
+				response = new WaitTimeOutExceptionMapper()
+						.toResponse((WaitTimeOutException) ex);
 			} else {
 				response = new ReposityServiceExceptionMapper()
 						.toResponse(ex);
 			}
 		}
 		return response;
+	}
+
+	public ArrayList<TransactionDAO> findAllTransations() {
+		ArrayList<TransactionDAO> daoList = dbManager.getAllTransation();
+		
+		return daoList;
 	}
 
 }

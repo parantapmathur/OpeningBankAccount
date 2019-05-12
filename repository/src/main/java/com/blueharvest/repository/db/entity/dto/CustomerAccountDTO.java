@@ -1,61 +1,30 @@
-package com.blueharvest.repository.db.entity;
+package com.blueharvest.repository.db.entity.dto;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
 /**
  * @author Parantap Mathur
  *
  */
-@Entity
-@Table(name = "customer_account_details")
-public class Customer_Account {
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "account_id", nullable = false)
+
+public class CustomerAccountDTO {
 	private long accountID;
-	
-	@Column(name = "account_type", nullable = false,length=20)
 	private String accountType;
-	
-	@Column(name = "account_number", nullable = false,length=20)
 	private String accountNumber;
-	
-	@Column(name = "account_branch", nullable = false,length=20)
 	private String accountBranch;
-	
-	@Column(name = "account_description", nullable = false,length=100)
 	private String accountDescription;
-	
-	@Column(name = "timestamp", nullable = false, updatable = false)
 	private Timestamp timestamp;
-	
-	@Column(name = "account_balance", nullable = false)
 	private BigDecimal accountBalance = BigDecimal.ZERO;
-	
-	@Column(name = "isEditable", nullable = false)
+	private String customerID;
 	private boolean isEditable = true;
 	
-	
-
-//	@ManyToOne
-//	@JoinColumn(name = "customer_id", nullable = false)
-//	private Customer_Detail customerDetail;
-
 	/**
 	 * @return the isEditable
 	 */
 	public boolean isEditable() {
 		return isEditable;
 	}
-
 
 	/**
 	 * @param isEditable the isEditable to set
@@ -64,15 +33,9 @@ public class Customer_Account {
 		this.isEditable = isEditable;
 	}
 
-
-	@Column(name = "customer_id", nullable = false,length=20)
-	private String customerID;
-	
-	
-	public Customer_Account() {
+	public CustomerAccountDTO() {
 
 	}
-
 
 	/**
 	 * @return the accountID
@@ -204,23 +167,5 @@ public class Customer_Account {
 			this.accountBalance = accountBalance;
 		}
 	}
-
-
-
-//
-//	/**
-//	 * @return the customerDetail
-//	 */
-//	public Customer_Detail getCustomerDetail() {
-//		return customerDetail;
-//	}
-//
-//
-//	/**
-//	 * @param customerDetail the customerDetail to set
-//	 */
-//	public void setCustomerDetail(Customer_Detail customerDetail) {
-//		this.customerDetail = customerDetail;
-//	}
 
 }

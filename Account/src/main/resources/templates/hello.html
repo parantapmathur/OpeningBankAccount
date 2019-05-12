@@ -7,6 +7,8 @@
     <body>
         <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
         <h1 th:inline="text">Your Secondary Current Account is created!</h1>
+      <!--     <p th:text="'customerID: ' + ${result.customerID:}" />
+   		  <p th:text="'new Account Number: ' + ${result.newAccountNumber}" /> -->
         <form th:action="@{/logout}" method="post">
             <input type="submit" value="Sign Out"/>
         </form>

@@ -84,6 +84,13 @@ public class CustomerAccountResponse {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+
+	@Override
+	public String toString() {
+		return "CustomerAccountResponse [customerID=" + customerID + ", customerName=" + customerName
+				+ ", balanceAmount=" + balanceAmount + ", currency=" + currency + ", newAccountNumber="
+				+ newAccountNumber + ", status=" + status + "]";
+	}
 	
 	
 

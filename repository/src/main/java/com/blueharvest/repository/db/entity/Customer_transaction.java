@@ -20,7 +20,7 @@ public class Customer_transaction {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "transation_id", nullable = false)
-	private long transation_id;
+	private long transationid;
 	@Column(name = "description", nullable = false,length=250)
 	private String description;
 	@Column(name = "transaction_type", nullable = false,length=2)
@@ -54,16 +54,16 @@ public class Customer_transaction {
 	/**
 	 * @return the transation_id
 	 */
-	public long getTransation_id() {
-		return transation_id;
+	public long getTransationid() {
+		return transationid;
 	}
 
 
 	/**
 	 * @param transation_id the transation_id to set
 	 */
-	public void setTransation_id(long transation_id) {
-		this.transation_id = transation_id;
+	public void setTransationid(long transationid) {
+		this.transationid = transationid;
 	}
 
 

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.blueharvest.transaction.ws.dao;
+package com.blueharvest.repository.ws.dto;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;

@@ -1,21 +1,29 @@
+/**
+ * 
+ */
 package com.blueharvest.repository.exception.util;
 
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-import com.blueharvest.repository.exception.ReposityServiceException;
+import com.blueharvest.repository.exception.WaitTimeOutException;
 import com.blueharvest.repository.ws.response.ErrorResponse;
 
-public class ReposityServiceExceptionMapper {
+/**
+ * @author paran
+ *
+ */
+public class WaitTimeOutExceptionMapper{
 
-	public Response toResponse(ReposityServiceException ex) {
+
+	public Response toResponse(WaitTimeOutException ex) {
 		return Response.status(Status.BAD_REQUEST)
 				.entity(prepareErrorRecord(ex))
 				.type(MediaType.APPLICATION_JSON_TYPE).build();
 	}
 	
-	public static ErrorResponse prepareErrorRecord(ReposityServiceException ex) {
+	public static ErrorResponse prepareErrorRecord(WaitTimeOutException ex) {
 		ErrorResponse errorResponse = new ErrorResponse();
 		errorResponse.setErrorCode(ex.getErrorCode());
 		errorResponse.setErrorDescription(ex.getMessage());
@@ -34,5 +42,6 @@ public class ReposityServiceExceptionMapper {
 		errorResponse.setErrorDescription(ex.getMessage());
 		return errorResponse;
 	}
+
 
 }

@@ -3,6 +3,8 @@
  */
 package com.blueharvest.repository.utility;
 
+import java.math.BigDecimal;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -29,6 +31,14 @@ public class ConfigParams {
 	
 	@Value("${app.account.default.accounttype}") 
 	private String accountType;
+	
+	@Value("${app.account.min.balance}") 
+	private String accountBalanceMinLimit;
+	
+	@Value("${app.account.max.wait}") 
+	private long primaryAccntMaxWait;
+	
+	
 
 	/*
 	 * public ConfigParams(@Value("${app.account.num.length}") String length,
@@ -39,6 +49,34 @@ public class ConfigParams {
 	 * this.allowAlpha = allowAlpha; this.allowNums = allowNums; }
 	 */
 	
+	/**
+	 * @return the primaryAccntMaxWait
+	 */
+	public long getPrimaryAccntMaxWait() {
+		return primaryAccntMaxWait;
+	}
+
+	/**
+	 * @param primaryAccntMaxWait the primaryAccntMaxWait to set
+	 */
+	public void setPrimaryAccntMaxWait(long primaryAccntMaxWait) {
+		this.primaryAccntMaxWait = primaryAccntMaxWait;
+	}
+
+	/**
+	 * @return the accountBalanceminLimit
+	 */
+	public String getAccountBalanceMinLimit() {
+		return accountBalanceMinLimit;
+	}
+
+	/**
+	 * @param accountBalanceminLimit the accountBalanceminLimit to set
+	 */
+	public void setAccountBalanceMinLimit(String accountBalanceMinLimit) {
+		this.accountBalanceMinLimit = accountBalanceMinLimit;
+	}
+
 	public String getAccountType() {
 		return accountType;
 	}

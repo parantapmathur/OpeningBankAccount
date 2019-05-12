@@ -3,8 +3,11 @@
  */
 package com.blueharvest.account.ws;
 
+import javax.ws.rs.core.Response;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +20,8 @@ import com.blueharvest.account.client.CustomerAccountRequest;
 import com.blueharvest.account.client.CustomerAccountResponse;
 import com.blueharvest.account.util.ConfigParams;
 import com.blueharvest.account.ws.request.CreateAccountRequest;
+
+import io.micrometer.core.instrument.util.StringUtils;
 
 /**
  * @author Parantap Mathur
@@ -33,6 +38,7 @@ public class CreateAccountControl {
 	@GetMapping("/openAccount")
     public String openAccountForm(Model model) {
         model.addAttribute("createAccountRequest", new CreateAccountRequest());
+        model.addAttribute("result", new CustomerAccountResponse());
         return "createAccountRequest";
     }
 	
@@ -46,11 +52,14 @@ public class CreateAccountControl {
 		RestTemplate restTemplate = new RestTemplate();
 		
 		String uri = configParam.getOpenAccountURL();
-		CustomerAccountResponse result = restTemplate.postForObject(uri ,CustomerAccountRequest.class, CustomerAccountResponse.class);
+		CustomerAccountRequest accountRequest=new CustomerAccountRequest();
+		BeanUtils.copyProperties(createAccountRequest, accountRequest);
+		
+		CustomerAccountResponse result = restTemplate.postForObject(uri ,accountRequest, CustomerAccountResponse.class);
 		
 		
-		logger.debug(result.toString());
-		
+		logger.debug("result:"+result.toString());
+		//return result;
 		return "hello";
     }
 	
