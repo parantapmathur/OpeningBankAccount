@@ -13,6 +13,8 @@ Steps to run the application:
 
 Steps to use the application:
 1. enter URL in the web browser: http://localhost:8180/login
+	user:blueharvest
+	password: password
 note: please ignore the error page. 
 2. then enter: http://localhost:8180/openAccount
 3. enter test data, on the HTML form:
